@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat with AI</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { padding: 20px; }
+        #responseArea { margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Chat with AI</h1>
+        <textarea id="userInput" class="form-control" rows="3" placeholder="Type your message here..."></textarea>
+        <button id="sendButton" class="btn btn-primary mt-3">Send</button>
+        <div id="responseArea" class="mt-4">
+            <!-- Responses will be displayed here -->
+        </div>
+    </div>
+
+   
+    <script>
+        const sendButton = document.getElementById('sendButton');
+        const userInput = document.getElementById('userInput');
+        const responseArea = document.getElementById('responseArea');
+        
+            sendButton.onclick = async function() {
+                const userText = userInput.value;
+                const data = await postData('/sendMessage', { message: userText });
+                responseArea.innerHTML = responseArea.innerHTML + '<div><b>You:</b> ' + userText + '</div><div><b>AI:</b> ' + data.reply + '</div>';
+                userInput.value  = ''; // clear input after sending
+               
+            };
+
+            async function postData(url = "", data = {}) {
+                    // Default options are marked with *
+                    const response = await fetch(url, {
+                        method: "POST", // *GET, POST, PUT, DELETE, etc.
+                        mode: "cors", // no-cors, *cors, same-origin
+                        cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+                        credentials: "same-origin", // include, *same-origin, omit
+                        headers: {
+                        "Content-Type": "application/json",
+                        // 'Content-Type': 'application/x-www-form-urlencoded',
+                        },
+                        redirect: "follow", // manual, *follow, error
+                        referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+                        body: JSON.stringify(data), // body data type must match "Content-Type" header
+                    });
+                    
+                    return response.json(); // parses JSON response into native JavaScript objects
+            }
+       
+    </script>
+</body>
+</html>
