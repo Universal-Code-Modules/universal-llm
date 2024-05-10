@@ -21,8 +21,7 @@
   "homepage": "https://github.com/leonpolak/universal#readme",
   "dependencies": {
     "@dip1059/safe-math-js": "^1.0.0",
-    "@fastify/cors": "^7.0.0",
-    "@fastify/static": "^7.0.4",
+    
     "@huggingface/agents": "^0.0.5",
     "@huggingface/hub": "^0.14.2",
     "@huggingface/inference": "^2.6.6",
@@ -30,8 +29,7 @@
     "auto-bind": "^5.0.1",
     "dotenv": "^16.4.5",
     "elevenlabs-node": "^2.0.3",
-    "fastify": "^4.27.0",
-    "fastify-cors": "^6.1.0",
+   
     "fluent-ffmpeg": "^2.1.2",
     "from-exponential": "^1.1.1",
     "ioredis": "^5.3.2",

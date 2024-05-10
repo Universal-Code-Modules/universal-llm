@@ -193,7 +193,15 @@ const callAPI = async (library, methodPath, ...args) => {
     Readable.fromWeb(res.body).pipe(writer);
  }
 
- 
+ const safeRequire = (modulePath) => { 
+  try {
+   return require(modulePath);
+  }
+  catch (e) {
+   console.log('requireF(): The file "' + modulePath + '".js could not be loaded.');
+   return false;
+  }
+}
 
 
     
@@ -201,4 +209,4 @@ const callAPI = async (library, methodPath, ...args) => {
 
 
 module.exports = {callAPI, measureTime, math, delay, random, roughSizeOfObject, formatBytes, 
-                  humanFileSize, extractVideoFrames, cleanDirectory, processFileLineByLine, saveFileFromWeb };
+                  humanFileSize, extractVideoFrames, cleanDirectory, processFileLineByLine, saveFileFromWeb, safeRequire };
