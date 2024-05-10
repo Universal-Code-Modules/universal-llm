@@ -1,4 +1,4 @@
-# Universal modules
+# Universal LLMs
 
 This module should manage interactions with AI language models. For starters: Openai, Huggingface, Ollama and Elevenlabs.
 
@@ -9,7 +9,7 @@ I recommend to install [timescaledb](https://neon.tech/docs/extensions/timescale
 
 Install [ffmpeg](https://ffmpeg.org/) for audio and video processing.
 
-Install [nginx](https://www.nginx.com/resources/wiki/start/topics/tutorials/install/) for load balancing and reverse proxy (optional). 
+
 
 Run npm install
 
