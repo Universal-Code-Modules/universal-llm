@@ -1,0 +1,12 @@
+{
+  "callApiOpts": {
+    "logTime": true,
+    "logResult": false,
+    "logErrors": true
+  },
+  "ollamaOpts": {
+    "transport": "http",
+    "host": "localhost",
+    "port": 11434
+  }
+}
