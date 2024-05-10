@@ -2,7 +2,7 @@
 
 This module should manage interactions with AI language models. For starters: Openai, Huggingface, Ollama and Elevenlabs.
 
-## Requrements
+## Requirements
 
 Install [ffmpeg](https://ffmpeg.org/) for audio and video processing.
 
@@ -55,11 +55,17 @@ npm t
 
 Alternatively, you can check manually if a method works by placing following code in the main.js file in the root (in this case we testing Elevenlabs module):
 
-```
+```javascript
+const { openai } = require('./lib');
+
+const { Chat } = openai;
+
+const chat = new Chat({ apiKey: process.env.OPENAI_API_KEY });
 
 (async () => {
-    const res = await require('./Elevenlabs/elevenlabs-connector').getVoice();
-})()
+  const msg = await chat.message({ text: 'Hello!' });
+  console.log({ msg });
+})();
 ```
 
 Use common.callAPI universal method to call API endpoints in modules.
@@ -70,8 +76,8 @@ If LOG_API_CALL_RESULT config variable is set to true, each method should print 
 
 For those who unfamiliar with backend, you run following command in the terminal:
 
-```
-node main.js
+```bash
+node --env-file=.env main.js
 ```
 
 Just don't forget to remove the code from the index.js file after testing.
@@ -81,7 +87,7 @@ Just don't forget to remove the code from the index.js file after testing.
 I would like to use [Clinic.js](https://clinicjs.org/) for diagnostics, but we may set other systems in parrallel.
 To use it, you should install it globally with npm install -g clinic and then run it with clinic doctor command. [Read more](https://clinicjs.org/documentation/) and check [examples](https://github.com/clinicjs/node-clinic-doctor-examples).
 
-```
+```bash
 npm install -g clinic
 npm install -g autocannon
 clinic doctor -- node server.js
