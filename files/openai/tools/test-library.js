@@ -1,42 +1,58 @@
 'use strict';
 
+const locations = [
+  {
+    location: 'San Francisco',
+    temperature: '72',
+    unit: 'fahrenheit',
+    age: '72',
+  },
+  {
+    location: 'Paris',
+    temperature: '22',
+    unit: 'fahrenheit',
+    age: '22',
+  },
+  {
+    location: 'Tokyo',
+    temperature: '10',
+    unit: 'celsius',
+    age: '10',
+  },
+];
+
 const getCurrentWeather = ({ location /*,unit = 'fahrenheit'*/ }) => {
-  if (location.toLowerCase().includes('tokyo')) {
-    return JSON.stringify({
-      location: 'Tokyo',
-      temperature: '10',
-      unit: 'celsius',
-    });
-  } else if (location.toLowerCase().includes('san francisco')) {
-    return JSON.stringify({
-      location: 'San Francisco',
-      temperature: '72',
-      unit: 'fahrenheit',
-    });
-  } else if (location.toLowerCase().includes('paris')) {
-    return JSON.stringify({
-      location: 'Paris',
-      temperature: '22',
-      unit: 'fahrenheit',
-    });
-  } else {
-    return JSON.stringify({ location, temperature: 'unknown' });
+  const targetLocation = location.toLowerCase();
+  for (const expectedLocation of locations) {
+    const { location } = expectedLocation;
+    if (location.toLowerCase() === targetLocation) {
+      const result = { ...expectedLocation };
+      delete result.age;
+      return JSON.stringify(result);
+    }
   }
+  return JSON.stringify({
+    location,
+    unit: 'unknown',
+    temperature: 'unknown',
+  });
 };
+
 const getCurrentAge = ({ location /*unit = 'years'*/ }) => {
-  if (location.toLowerCase().includes('tokyo')) {
-    return JSON.stringify({ location: 'Tokyo', age: '10', unit: 'years' });
-  } else if (location.toLowerCase().includes('san francisco')) {
-    return JSON.stringify({
-      location: 'San Francisco',
-      age: '72',
-      unit: 'years',
-    });
-  } else if (location.toLowerCase().includes('paris')) {
-    return JSON.stringify({ location: 'Paris', age: '22', unit: 'years' });
-  } else {
-    return JSON.stringify({ location, temperature: 'unknown' });
+  const targetLocation = location.toLowerCase();
+  for (const expectedLocation of locations) {
+    const { location } = expectedLocation;
+    if (location.toLowerCase() === targetLocation) {
+      const result = { ...expectedLocation };
+      delete result.temperature;
+      return JSON.stringify(result);
+    }
   }
+  return JSON.stringify({
+    location,
+    unit: 'unknown',
+    age: 'unknown',
+  });
 };
 
 const tools = [
