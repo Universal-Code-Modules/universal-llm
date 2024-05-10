@@ -1,52 +1,51 @@
 {
-  "name": "universal-modules",
-  "version": "1.0.0",
-  "description": "Universal modules for rapid node.js application development",
-  "main": "index.js",
-  "scripts": {
-    "test": "jest"
+  "name": "universal-llm",
+  "version": "0.0.1",
+  "description": "Powerful, configurable and usable Universal LLM modules for all your AI needs.",
+  "main": "lib/index.js",
+  "types": "types.d.ts",
+  "engines": {
+    "node": "18 || 20 || 21 || 22"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/leonpolak/universal.git"
+  "readmeFilename": "README.md",
+  "scripts": {
+    "test": "npm run lint && npm run types && node --env-file=.env --test --test-timeout 60000",
+    "types": "tsc -p tsconfig.json",
+    "lint": "eslint . && prettier --check \"**/*.js\" \"**/*.json\" \"**/*.md\" \"**/.*rc\"",
+    "fmt": "prettier --write \"**/*.js\" \"**/*.json\" \"**/*.md\" \"**/.*rc\""
   },
   "keywords": [
-    "modules"
+    "AI",
+    "LLM",
+    "GPT",
+    "Deep Learning",
+    "Fine-tuning",
+    "Text Generation",
+    "Speech Recognition",
+    "Image Generation"
   ],
-  "author": "Collective",
+  "author": "Leon Polak <lp0808@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/leonpolak/universal/issues"
+    "url": "https://github.com/leonpolak/universal-llm/issues",
+    "email": "lp0808@gmail.com"
   },
-  "homepage": "https://github.com/leonpolak/universal#readme",
+  "homepage": "https://github.com/leonpolak/universal-llm#readme",
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "prettier": "^3.2.5",
+    "typescript": "^5.3.3"
+  },
   "dependencies": {
     "@dip1059/safe-math-js": "^1.0.0",
-    "@fastify/cors": "^7.0.0",
-    "@fastify/static": "^7.0.4",
-    "@huggingface/agents": "^0.0.5",
-    "@huggingface/hub": "^0.14.2",
-    "@huggingface/inference": "^2.6.6",
-    "@sendgrid/mail": "^8.1.1",
-    "auto-bind": "^5.0.1",
-    "dotenv": "^16.4.5",
+    "@huggingface/inference": "^2.6.7",
     "elevenlabs-node": "^2.0.3",
-    "fastify": "^4.27.0",
-    "fastify-cors": "^6.1.0",
     "fluent-ffmpeg": "^2.1.2",
     "from-exponential": "^1.1.1",
-    "ioredis": "^5.3.2",
-    "js-tiktoken": "^1.0.10",
-    "lodash": "^4.17.21",
     "music-metadata": "^7.14.0",
     "ollama": "^0.5.0",
-    "openai": "^4.32.1",
-    "pg": "^8.11.3",
-    "redis": "^4.6.13",
+    "openai": "^4.41.1",
     "sharp": "^0.33.3",
-    "tiktoken": "^1.0.13"
-  },
-  "devDependencies": {
-    "jest": "^29.7.0",
-    "jest-extended": "^4.0.2"
+    "tiktoken": "^1.0.14"
   }
 }
