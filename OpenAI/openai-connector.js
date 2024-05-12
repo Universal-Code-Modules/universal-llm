@@ -1,5 +1,5 @@
 require('dotenv').config()
-const ut = require(process.cwd() + '/utilities');
+const ut = require('../utilities');
 
 const OpenAI = require ("openai");
 const fs  = require ("fs");
