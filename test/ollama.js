@@ -8,12 +8,16 @@ const { completion } = ollama;
 
 test('Ollama Connector', async (t) => {
   await t.test('Completion', async () => {
-    const data = await completion([
+    const res = await completion([
       {
         role: 'user',
         content: 'how are you doing?',
       },
     ]);
-    assert.equal(data.message.role, 'assistant');
+
+    assert.ok(typeof res === 'object');
+    assert.ok('role' in res);
+    assert.ok('content' in res);
+    assert.strictEqual(res.role, 'assistant');
   });
 });
