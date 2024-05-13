@@ -50,8 +50,8 @@ const tested = {
   },
 };
 // const clean = async () => {};
-const file_id = 'file-X4ZR3WmEyxJKOEuyuthIIj9T';
-const ftJobId = 'ftjob-WUootDAvgqK1iJlpTn1XZmoO';
+// const file_id = 'file-X4ZR3WmEyxJKOEuyuthIIj9T';
+// const ftJobId = 'ftjob-WUootDAvgqK1iJlpTn1XZmoO';
 const modelId = 'gpt-3.5-turbo-16k';
 
 test('Openai Chat', async (t) => {
@@ -177,7 +177,7 @@ test('Openai Chat', async (t) => {
       await t.test('Retrieve file', async () => {
         const chat = new Chat({ apiKey: API_KEY });
 
-        let file_id = tested.fineTune.file.id;
+        const file_id = tested.fineTune.file.id;
         const res = await files(chat.openai).retrieve({ file_id });
 
         assert.ok('id' in res);
@@ -187,7 +187,7 @@ test('Openai Chat', async (t) => {
       await t.test('Retrieve file content', async () => {
         const chat = new Chat({ apiKey: API_KEY });
 
-        let file_id = tested.fineTune.file.id;
+        const file_id = tested.fineTune.file.id;
         const res = await files(chat.openai).content({ file_id });
 
         assert.strictEqual(typeof res, 'string');
@@ -196,7 +196,7 @@ test('Openai Chat', async (t) => {
       await t.test('Delete file', async () => {
         const chat = new Chat({ apiKey: API_KEY });
 
-        let file_id = tested.fineTune.file.id;
+        const file_id = tested.fineTune.file.id;
         const res = await files(chat.openai).del({ file_id });
 
         assert.ok('id' in res);
@@ -209,7 +209,6 @@ test('Openai Chat', async (t) => {
       await t.test('Create Fine Tune job', async () => {
         const chat = new Chat({ apiKey: API_KEY });
 
-        let file_id = tested.fineTune.file.id;
         const res = await fineTune(chat.openai).create({
           pathToFile: FINE_TUNE + '/test-fine-tune-24.jsonl',
         });
@@ -224,7 +223,7 @@ test('Openai Chat', async (t) => {
       await t.test('Create Fine Tune from training file', async () => {
         const chat = new Chat({ apiKey: API_KEY });
 
-        let file_id = tested.fineTune.file.id;
+        const file_id = tested.fineTune.file.id;
         const res = await fineTune(chat.openai).create({
           training_file: file_id,
         });
@@ -250,7 +249,7 @@ test('Openai Chat', async (t) => {
       await t.test('Retrieve Fine Tune job', async () => {
         const chat = new Chat({ apiKey: API_KEY });
 
-        let ftJobId = tested.fineTune.id;
+        const ftJobId = tested.fineTune.id;
         const res = await fineTune(chat.openai).retrieve({ id: ftJobId });
 
         assert.ok('id' in res);
