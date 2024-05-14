@@ -1,0 +1,51 @@
+{
+  "name": "universal-llm",
+  "version": "0.0.1",
+  "description": "Powerful, configurable and usable Universal LLM modules for all your AI needs.",
+  "main": "lib/index.js",
+  "types": "types.d.ts",
+  "engines": {
+    "node": "18 || 20 || 21 || 22"
+  },
+  "readmeFilename": "README.md",
+  "scripts": {
+    "test": "npm run lint && npm run types && node --env-file=.env --test --test-timeout 60000",
+    "types": "tsc -p tsconfig.json",
+    "lint": "eslint . && prettier --check \"**/*.js\" \"**/*.json\" \"**/*.md\" \"**/.*rc\"",
+    "fmt": "prettier --write \"**/*.js\" \"**/*.json\" \"**/*.md\" \"**/.*rc\""
+  },
+  "keywords": [
+    "AI",
+    "LLM",
+    "GPT",
+    "Deep Learning",
+    "Fine-tuning",
+    "Text Generation",
+    "Speech Recognition",
+    "Image Generation"
+  ],
+  "author": "Leon Polak <lp0808@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/leonpolak/universal-llm/issues",
+    "email": "lp0808@gmail.com"
+  },
+  "homepage": "https://github.com/leonpolak/universal-llm#readme",
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "prettier": "^3.2.5",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "@dip1059/safe-math-js": "^1.0.0",
+    "@huggingface/inference": "^2.6.7",
+    "elevenlabs-node": "^2.0.3",
+    "fluent-ffmpeg": "^2.1.2",
+    "from-exponential": "^1.1.1",
+    "music-metadata": "^7.14.0",
+    "ollama": "^0.5.0",
+    "openai": "^4.41.1",
+    "sharp": "^0.33.3",
+    "tiktoken": "^1.0.14"
+  }
+}

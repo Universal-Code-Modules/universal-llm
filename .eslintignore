@@ -128,17 +128,3 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
-
-
-
-#main.js is for local testing only
-main.js
-#mac
-.DS_Store
-.DS_Store?
-#store temp files for testing
-temp
-#keep private testing files
-my_*
-#don't include temporary video frames
-video-frames
