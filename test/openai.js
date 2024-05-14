@@ -5,18 +5,20 @@ const assert = require('node:assert');
 const fs = require('node:fs');
 const path = require('node:path');
 const { openai } = require('../lib');
-const { Chat, utils } = openai;
+const utils = require('../lib/openai/utils');
+const common = require('../lib/common.js');
 
-const FILES = path.join(path.resolve(__dirname), '../files');
+const { Chat } = openai;
+const API_KEY = process.env.OPENAI_API_KEY;
+
+const FILES = path.join(__dirname, '../files');
 const OPEN_AI_FILES = path.join(FILES, 'openai');
 const AUDIOS = path.join(OPEN_AI_FILES, 'audios');
 const IMAGES = path.join(OPEN_AI_FILES, 'images');
 const FINE_TUNE = path.join(OPEN_AI_FILES, 'fine-tune');
 const ASSISTANTS = path.join(OPEN_AI_FILES, 'assistants');
 const TOOLS = path.join(OPEN_AI_FILES, 'tools');
-const testLibrary = require(TOOLS + '/test-library.js');
-
-const API_KEY = process.env.OPENAI_API_KEY;
+const TEST_LIBRARY = require(TOOLS + '/test-library.js');
 
 const {
   language,
@@ -67,7 +69,7 @@ test('Chat voice message', async () => {
 
   const res = await chat.voiceMessage({
     inputFilePath: AUDIOS + '/test-speech-input-en.mp3',
-    outputFilePath: AUDIOS + '/test-speech-output-en.mp3',
+    outputFilePath: AUDIOS + '/my_test-speech-output-en.mp3',
     returnIntermediateResult: false,
   });
 
@@ -92,7 +94,7 @@ test('Text completeon with function call', async () => {
 
   const res = await language(chat.openai).generate({
     text: 'What is the weather like in San Francisco, Tokyo and Paris?',
-    tools: testLibrary.tools,
+    tools: TEST_LIBRARY.tools,
   });
 
   assert.ok('message' in res);
@@ -288,11 +290,21 @@ test('Retrieve model', async () => {
 //   assert.ok(res.deleted);
 // });
 
-test('textToSpeech', async () => {
+test('textToSpeech', async (t) => {
   const chat = new Chat({ apiKey: API_KEY });
 
-  const pathToFile = AUDIOS + '/test-speech-output-en.mp3';
-  await fs.promises.unlink(pathToFile).catch(console.error);
+  const pathToFile = AUDIOS + '/my_test-speech-output-en.mp3';
+
+  const isExist = await common.fileIsExist(pathToFile);
+
+  if (isExist) {
+    try {
+      await fs.promises.unlink(pathToFile);
+    } catch (err) {
+      t.fail(err);
+    }
+  }
+
   const res = await speech(chat.openai).textToSpeech({
     text: 'Hello, how can I help you?',
     pathToFile,
@@ -324,16 +336,13 @@ test('Speech Translation', async () => {
 test('Image Generation', async () => {
   const chat = new Chat({ apiKey: API_KEY });
 
-  const saveAs = IMAGES + '/test-image-create-result.jpg';
-  // try {
-  //     await fs.promises.unlink(pathToFile)
-  // } catch (error) {}
+  const saveAs = IMAGES + '/my_test-image-create-result.jpg';
 
   const res = await images(chat.openai).create({
     text: 'a white siamese cat',
     saveAs,
   });
-  // const stat = await fs.promises.stat(pathToFile);
+
   assert.ok('url' in res);
   assert.ok('local' in res);
 });
@@ -341,10 +350,7 @@ test('Image Generation', async () => {
 test('Image Edit', async () => {
   const chat = new Chat({ apiKey: API_KEY });
 
-  const saveAs = IMAGES + '/test-edit-image-result.jpg';
-  // try {
-  //     await fs.promises.unlink(saveAs)
-  // } catch (error) {}
+  const saveAs = IMAGES + '/my_test-edit-image-result.jpg';
 
   const res = await images(chat.openai).edit({
     text: 'A futuristic landscape behind a foregraund emoticon',
@@ -353,8 +359,7 @@ test('Image Edit', async () => {
     saveAs,
     size: '256x256',
   });
-  // const stat = await fs.promises.stat(saveAs);
-  // expect(stat).toHaveProperty('uid');
+
   assert.ok('url' in res);
   assert.ok('local' in res);
 });
@@ -363,7 +368,7 @@ test('Image Variation', async () => {
   const chat = new Chat({ apiKey: API_KEY });
 
   const pathToFile = IMAGES + '/test-edit-image.png';
-  const saveAs = IMAGES + '/test-image-variation-result.jpg';
+  const saveAs = IMAGES + '/my_test-image-variation-result.jpg';
   // try {
   //     await fs.promises.unlink(saveAs)
   // } catch (error) {}
