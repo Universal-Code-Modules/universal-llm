@@ -10,9 +10,7 @@ const { Chat } = huggingface;
 
 const API_KEY = process.env.HUGGINGFACE_API_KEY;
 
-const {
-  language: uLanguage,
-} = utils;
+const { language: uLanguage } = utils;
 
 describe('language', () => {
   let language;

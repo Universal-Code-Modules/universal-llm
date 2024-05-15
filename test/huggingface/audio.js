@@ -12,9 +12,7 @@ const { Chat } = huggingface;
 
 const API_KEY = process.env.HUGGINGFACE_API_KEY;
 
-const {
-  audio: uAudio,
-} = utils;
+const { audio: uAudio } = utils;
 
 const FILES = process.cwd() + '/files/huggingface/';
 const AUDIOS = FILES + 'audios';
