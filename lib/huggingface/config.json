@@ -1,0 +1,42 @@
+{
+  "DEFAULT_MODELS": {
+    "language": {
+      "fillMask": "bert-base-uncased",
+      "summarization": "facebook/bart-large-cnn",
+      "questionAnswering": "deepset/roberta-base-squad2",
+      "tableQuestionAnswering": "google/tapas-base-finetuned-wtq",
+      "textClassification": "distilbert-base-uncased-finetuned-sst-2-english",
+      "textGeneration": "gpt2",
+      "textGenerationStream": "google/flan-t5-xxl",
+      "tokenClassification": "dbmdz/bert-large-cased-finetuned-conll03-english",
+      "translation": "t5-base",
+      "zeroShotClassification": "facebook/bart-large-mnli",
+      "sentenceSimilarity": "sentence-transformers/paraphrase-xlm-r-multilingual-v1"
+    },
+    "audio": {
+      "automaticSpeechRecognition": "facebook/wav2vec2-large-960h-lv60-self",
+      "audioClassification": "superb/hubert-large-superb-er",
+      "textToSpeech": "espnet/kan-bayashi_ljspeech_vits",
+      "audioToAudio": "speechbrain/sepformer-wham"
+    },
+    "computerVision": {
+      "imageClassification": "google/vit-base-patch16-224",
+      "objectDetection": "facebook/detr-resnet-50",
+      "imageSegmentation": "facebook/detr-resnet-50-panoptic",
+      "imageToText": "nlpconnect/vit-gpt2-image-captioning",
+      "textToImage": "stabilityai/stable-diffusion-2",
+      "imageToImage": "lllyasviel/sd-controlnet-depth",
+      "zeroShotImageClassification": "openai/clip-vit-large-patch14-336"
+    },
+    "multimodal": {
+      "featureExtraction": "sentence-transformers/distilbert-base-nli-mean-tokens",
+      "visualQuestionAnswering": "dandelin/vilt-b32-finetuned-vqa",
+      "documentQuestionAnswering": "impira/layoutlm-document-qa"
+    },
+    "tabular": {
+      "tabularRegression": "scikit-learn/Fish-Weight",
+      "tabularClassification": "vvmnnnkv/wine-quality"
+    }
+  },
+  "DEFAULT_VOICE": "onyx"
+}
