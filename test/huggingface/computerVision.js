@@ -12,9 +12,7 @@ const { Chat } = huggingface;
 
 const API_KEY = process.env.HUGGINGFACE_API_KEY;
 
-const {
-  computerVision: uComputerVision,
-} = utils;
+const { computerVision: uComputerVision } = utils;
 
 const FILES = process.cwd() + '/files/huggingface/';
 const IMAGES = FILES + 'images';
@@ -91,10 +89,10 @@ describe('computerVision', () => {
 
   it('textToImage', async () => {
     const inputs =
-    'award winning high resolution photo of a giant tortoise' +
-    '/((ladybird)) hybrid, [trending on artstation]';
+      'award winning high resolution photo of a giant tortoise' +
+      '/((ladybird)) hybrid, [trending on artstation]';
     const res = await computerVision.textToImage(inputs, {
-      negative_prompt: 'blurry'
+      negative_prompt: 'blurry',
     });
 
     assert.ok(res instanceof Blob);

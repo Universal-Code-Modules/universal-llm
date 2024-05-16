@@ -10,9 +10,7 @@ const { Chat } = huggingface;
 
 const API_KEY = process.env.HUGGINGFACE_API_KEY;
 
-const {
-  custom: uCustom,
-} = utils;
+const { custom: uCustom } = utils;
 
 describe('custom', () => {
   let custom;
