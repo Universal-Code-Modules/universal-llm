@@ -9,9 +9,7 @@ const { Chat } = huggingface;
 
 const API_KEY = process.env.HUGGINGFACE_API_KEY;
 
-const {
-  tabular: uTabular,
-} = utils;
+const { tabular: uTabular } = utils;
 
 describe('tabular', () => {
   let tabular;
