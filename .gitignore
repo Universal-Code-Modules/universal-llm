@@ -131,8 +131,6 @@ dist
 
 
 
-#main.js is for local testing only
-main.js
 #mac
 .DS_Store
 .DS_Store?
