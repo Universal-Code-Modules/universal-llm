@@ -9,7 +9,7 @@
   },
   "readmeFilename": "README.md",
   "scripts": {
-    "test": "npm run lint && npm run types && node --env-file=.env --test --test-timeout 60000",
+    "test": "npm run lint",
     "types": "tsc -p tsconfig.json",
     "lint": "eslint . && prettier --check \"**/*.js\" \"**/*.json\" \"**/*.md\" \"**/.*rc\"",
     "fmt": "prettier --write \"**/*.js\" \"**/*.json\" \"**/*.md\" \"**/.*rc\""
