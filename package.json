@@ -27,10 +27,10 @@
   "author": "Leon Polak <lp0808@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/leonpolak/universal-llm/issues",
+    "url": "https://github.com/Universal-Code-Modules/universal-llm/issues",
     "email": "lp0808@gmail.com"
   },
-  "homepage": "https://github.com/leonpolak/universal-llm#readme",
+  "homepage": "https://github.com/Universal-Code-Modules/universal-llm#readme",
   "devDependencies": {
     "eslint": "^8.57.0",
     "prettier": "^3.2.5",
@@ -39,6 +39,7 @@
   "dependencies": {
     "@dip1059/safe-math-js": "^1.0.0",
     "@huggingface/inference": "^2.6.7",
+    "@weblab-notebook/sentencepiece": "^0.1.3",
     "elevenlabs-node": "^2.0.3",
     "fluent-ffmpeg": "^2.1.2",
     "from-exponential": "^1.1.1",
