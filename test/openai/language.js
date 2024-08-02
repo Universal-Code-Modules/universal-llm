@@ -19,15 +19,17 @@ describe('Chat Operations', () => {
   let language = null;
   beforeEach(() => {
     const chat = new Chat({ apiKey: API_KEY });
-    language = utils.language(chat.openai);
+    language = utils.language(chat);
   });
 
   it('Text completion', async () => {
     const res = await language.generate({ text: 'hello' });
 
-    assert.ok('message' in res);
-    assert.ok('messages' in res);
     assert.ok('usage' in res);
+    assert.ok('model' in res);
+    assert.ok('id' in res);
+    assert.ok('choices' in res);
+    assert.ok(res.choices.length === 1);
   });
 
   it('Text completion with function call', async () => {
@@ -36,7 +38,7 @@ describe('Chat Operations', () => {
       tools: TEST_LIBRARY.tools,
     });
 
-    assert.ok('message' in res);
+    assert.ok('choices' in res);
     assert.ok('messages' in res);
     assert.ok('usage' in res);
   });
@@ -44,8 +46,12 @@ describe('Chat Operations', () => {
   it('Text Embedding', async () => {
     const res = await language.embedding({ text: 'hello' });
 
-    assert.ok('embedding' in res);
+    console.dir({ res }, { depth: null });
+
     assert.ok('usage' in res);
+    assert.ok('data' in res);
+    assert.ok(Array.isArray(res.data));
+    assert.ok('embedding' in res.data[0]);
   });
 
   // WARN: 400 Invalid value for 'model' = text-moderation-007
