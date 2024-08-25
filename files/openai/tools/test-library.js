@@ -2,32 +2,29 @@
 
 const locations = [
   {
-    location: 'San Francisco',
+    location: 'San Francisco, CA',
     temperature: '72',
     unit: 'fahrenheit',
     age: '72',
   },
   {
-    location: 'Paris',
+    location: 'Paris, France',
     temperature: '22',
     unit: 'fahrenheit',
     age: '22',
   },
   {
-    location: 'Tokyo',
+    location: 'Tokyo, Japan',
     temperature: '10',
     unit: 'celsius',
     age: '10',
   },
 ];
 
-const getCurrentWeather = ({ location /*,unit = 'fahrenheit'*/ }) => {
-  const targetLocation = location.toLowerCase();
-  for (const expectedLocation of locations) {
-    const { location } = expectedLocation;
-    if (location.toLowerCase() === targetLocation) {
-      const result = { ...expectedLocation };
-      delete result.age;
+const getCurrentWeather = ({ location: targetLocation }) => {
+  for (const { location, temperature, unit } of locations) {
+    if (location === targetLocation) {
+      const result = { location, temperature, unit };
       return JSON.stringify(result);
     }
   }
@@ -38,13 +35,10 @@ const getCurrentWeather = ({ location /*,unit = 'fahrenheit'*/ }) => {
   });
 };
 
-const getCurrentAge = ({ location /*unit = 'years'*/ }) => {
-  const targetLocation = location.toLowerCase();
-  for (const expectedLocation of locations) {
-    const { location } = expectedLocation;
-    if (location.toLowerCase() === targetLocation) {
-      const result = { ...expectedLocation };
-      delete result.temperature;
+const getCurrentAge = ({ location: targetLocation }) => {
+  for (const { location, age, unit } of locations) {
+    if (location === targetLocation) {
+      const result = { location, age, unit };
       return JSON.stringify(result);
     }
   }
@@ -57,8 +51,6 @@ const getCurrentAge = ({ location /*unit = 'years'*/ }) => {
 
 const tools = [
   {
-    // name: "get_current_weather",
-
     fn: getCurrentWeather,
     scope: this,
     description: 'Get the current weather in a given location',
@@ -72,8 +64,6 @@ const tools = [
     required: ['location'],
   },
   {
-    // name: "get_current_weather",
-
     fn: getCurrentAge,
     scope: this,
     description: 'Get the current population average age in a given location',
