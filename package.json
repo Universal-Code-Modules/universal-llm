@@ -15,9 +15,9 @@
     "fmt": "prettier --write \"**/*.js\" \"**/*.json\" \"**/*.md\" \"**/.*rc\"",
     "test:ci": "npm run lint && node --test",
     "test:openai": "npm run lint && node --env-file=.env --test test/openai/*",
-    "test:hf": "npm run lint && node --env-file=.env --test test/openai/*",
-    "test:ollama": "npm run lint && node --env-file=.env --test test/openai/*",
-    "test:elevenlabs": "npm run lint && node --env-file=.env --test test/openai/*",
+    "test:hf": "npm run lint && node --env-file=.env --test test/huggingface/*",
+    "test:ollama": "npm run lint && node --env-file=.env --test test/elevenlabs.js",
+    "test:elevenlabs": "npm run lint && node --env-file=.env --test test/ollama.js"
   },
   "keywords": [
     "AI",
